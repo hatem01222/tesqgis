@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        #map {
+            width: 1050px;
+            height: 817px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/2_1.js"></script>
+        <script src="data/shp_2.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[24.229279395479335,38.99386827120321],[24.759715527695715,39.74341213748833]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_hyb_0');
+        map.getPane('pane_hyb_0').style.zIndex = 400;
+        var layer_hyb_0 = L.tileLayer('http://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}', {
+            pane: 'pane_hyb_0',
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 18
+        });
+        layer_hyb_0;
+        map.addLayer(layer_hyb_0);
+        function pop_2_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['AddDateTime'] !== null ? autolinker.link(feature.properties['AddDateTime'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['حالة البلاغ'] !== null ? autolinker.link(feature.properties['حالة البلاغ'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['البلدية - الإدارة'] !== null ? autolinker.link(feature.properties['البلدية - الإدارة'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['latitude'] !== null ? autolinker.link(feature.properties['latitude'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['longitude'] !== null ? autolinker.link(feature.properties['longitude'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NotificationType'] !== null ? autolinker.link(feature.properties['NotificationType'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['HDate'] !== null ? autolinker.link(feature.properties['HDate'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['=Right(HDate,2)'] !== null ? autolinker.link(feature.properties['=Right(HDate,2)'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ImagePath'] !== null ? autolinker.link(feature.properties['ImagePath'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CompleteMedia'] !== null ? autolinker.link(feature.properties['CompleteMedia'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['notVerifiedMedia'] !== null ? autolinker.link(feature.properties['notVerifiedMedia'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['VerifiedMedia'] !== null ? autolinker.link(feature.properties['VerifiedMedia'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dateofcreate'] !== null ? autolinker.link(feature.properties['dateofcreate'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['time ofcreation'] !== null ? autolinker.link(feature.properties['time ofcreation'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ClosedUserName'] !== null ? autolinker.link(feature.properties['ClosedUserName'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CreatorUserName'] !== null ? autolinker.link(feature.properties['CreatorUserName'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['EscalationCount'] !== null ? autolinker.link(feature.properties['EscalationCount'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LastComment'] !== null ? autolinker.link(feature.properties['LastComment'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ClosedDateTime'] !== null ? autolinker.link(feature.properties['ClosedDateTime'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tduration'] !== null ? autolinker.link(feature.properties['tduration'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['formated close date'] !== null ? autolinker.link(feature.properties['formated close date'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['formatadddate'] !== null ? autolinker.link(feature.properties['formatadddate'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['حالة البلاغ اجمالا'] !== null ? autolinker.link(feature.properties['حالة البلاغ اجمالا'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PartyName'] !== null ? autolinker.link(feature.properties['PartyName'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['رقم البلاغ'] !== null ? autolinker.link(feature.properties['رقم البلاغ'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_2_1_0() {
+            return {
+                pane: 'pane_2_1',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(231,113,72,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_2_1');
+        map.getPane('pane_2_1').style.zIndex = 401;
+        map.getPane('pane_2_1').style['mix-blend-mode'] = 'normal';
+        var layer_2_1 = new L.geoJson(json_2_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_2_1',
+            layerName: 'layer_2_1',
+            pane: 'pane_2_1',
+            onEachFeature: pop_2_1,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_2_1_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_2_1);
+        map.addLayer(layer_2_1);
+        function pop_shp_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['AddDateTim'] !== null ? autolinker.link(feature.properties['AddDateTim'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['حالة �'] !== null ? autolinker.link(feature.properties['حالة �'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['البلد'] !== null ? autolinker.link(feature.properties['البلد'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['latitude'] !== null ? autolinker.link(feature.properties['latitude'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['longitude'] !== null ? autolinker.link(feature.properties['longitude'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Notificati'] !== null ? autolinker.link(feature.properties['Notificati'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['HDate'] !== null ? autolinker.link(feature.properties['HDate'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['=Right(HDa'] !== null ? autolinker.link(feature.properties['=Right(HDa'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ImagePath'] !== null ? autolinker.link(feature.properties['ImagePath'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CompleteMe'] !== null ? autolinker.link(feature.properties['CompleteMe'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['notVerifie'] !== null ? autolinker.link(feature.properties['notVerifie'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['VerifiedMe'] !== null ? autolinker.link(feature.properties['VerifiedMe'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dateofcrea'] !== null ? autolinker.link(feature.properties['dateofcrea'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['time ofcre'] !== null ? autolinker.link(feature.properties['time ofcre'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ClosedUser'] !== null ? autolinker.link(feature.properties['ClosedUser'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CreatorUse'] !== null ? autolinker.link(feature.properties['CreatorUse'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Escalation'] !== null ? autolinker.link(feature.properties['Escalation'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LastCommen'] !== null ? autolinker.link(feature.properties['LastCommen'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ClosedDate'] !== null ? autolinker.link(feature.properties['ClosedDate'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tduration'] !== null ? autolinker.link(feature.properties['tduration'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['formated c'] !== null ? autolinker.link(feature.properties['formated c'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['formataddd'] !== null ? autolinker.link(feature.properties['formataddd'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['حالة_1'] !== null ? autolinker.link(feature.properties['حالة_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PartyName'] !== null ? autolinker.link(feature.properties['PartyName'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['رقم ا�'] !== null ? autolinker.link(feature.properties['رقم ا�'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_shp_2_0() {
+            return {
+                pane: 'pane_shp_2',
+                radius: 6.400000000000002,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(245,7,2,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_shp_2');
+        map.getPane('pane_shp_2').style.zIndex = 402;
+        map.getPane('pane_shp_2').style['mix-blend-mode'] = 'normal';
+        var layer_shp_2 = new L.geoJson(json_shp_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_shp_2',
+            layerName: 'layer_shp_2',
+            pane: 'pane_shp_2',
+            onEachFeature: pop_shp_2,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_shp_2_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_shp_2);
+        map.addLayer(layer_shp_2);
+        setBounds();
+        </script>
+    </body>
+</html>
